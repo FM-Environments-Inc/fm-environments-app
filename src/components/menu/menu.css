@@ -1,0 +1,23 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li a {
+  margin-right: 1em;
+  font-size: 1.3em;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+li a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,25 @@
+.teams {
+  height: 100vh;
+  background-color: var(--black);
+  padding: 1em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: var(--primary);
+}
+
+.teams h1 {
+  margin-bottom: 1.5em;
+}
+
+.teams-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.teams-clear {
+  margin-left: 2em;
+  align-self: center;
+}

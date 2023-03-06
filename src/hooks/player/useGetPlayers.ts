@@ -34,16 +34,22 @@ const GET_PLAYERS = gql`
         firstname,
         lastname,
         age,
-        id,
+        height,
+        _id,
         photo,
         country { name },
         evaluation,
-        matches,
-        points_earned,
-        assists_earned,
         position,
         role,
-        overallRating,
+        ratings {
+          overall,
+          pace,
+          shot,
+          pass,
+          dribbling,
+          defending,
+          physics
+        },
         team { name, logo }
       }
   }

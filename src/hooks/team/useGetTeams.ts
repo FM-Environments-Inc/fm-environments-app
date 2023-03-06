@@ -36,17 +36,10 @@ query teams(
     ) {
       name,
         logo,
-        id,
+        _id,
         country { name },
         division { name },
-        evaluation,
-        matches,
-        wins,
-        draws,
-        loses,
-        points_earned,
-        enemy_points_earned,
-        points_difference
+        evaluation
     }
 }
 `;

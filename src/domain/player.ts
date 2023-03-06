@@ -31,11 +31,22 @@ export const playerRoles = {
   ATTACKER: 'ATTACKER'
 };
 
+export type PlayerRatings = {
+  overall: number;
+  pace?: number;
+  shot?: number;
+  pass?: number;
+  dribbling?: number;
+  defending?: number;
+  physics?: number;
+};
+
 export interface IPlayer {
   id: number;
   firstname?: string;
   lastname: string;
   age: number;
+  height: string;
   matches?: number;
   points_earned?: number;
   assists_earned?: number;
@@ -46,8 +57,8 @@ export interface IPlayer {
   environment: IEnvironment;
   team: IPlayerTeam;
   position?: PLAYER_POSITION;
-  overallRating: number;
   awards: IAward[];
+  ratings: PlayerRatings,
 }
 
 export interface IPlayerTeam {

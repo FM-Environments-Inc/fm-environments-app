@@ -42,20 +42,20 @@ export type PlayerRatings = {
 };
 
 export interface IPlayer {
-  id: number;
-  firstname?: string;
-  lastname: string;
+  _id: string;
+  firstName?: string;
+  lastName: string;
   age: number;
   height: string;
   matches?: number;
-  points_earned?: number;
-  assists_earned?: number;
+  goals?: number;
+  assists?: number;
   evaluation: number;
   photo?: string;
-  role?: PLAYER_ROLE;
+  role?: string;
   country: ICountry;
   environment: IEnvironment;
-  team: IPlayerTeam;
+  playerTeam: IPlayerTeam;
   position?: PLAYER_POSITION;
   awards: IAward[];
   ratings: PlayerRatings,

@@ -38,7 +38,7 @@ query teams(
         logo,
         _id,
         country { name },
-        division { name },
+        division,
         evaluation
     }
 }

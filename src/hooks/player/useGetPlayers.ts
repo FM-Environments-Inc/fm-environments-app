@@ -4,7 +4,7 @@ import { IPlayer, PLAYER_ROLE } from '../../domain/player';
 
 interface IGetPlayersArgs {
   environment: string;
-  role?: PLAYER_ROLE;
+  role?: string;
   page: number;
   limit: number;
   order: string;
@@ -31,8 +31,8 @@ const GET_PLAYERS = gql`
         country: $country,
         role: $role
       ) {
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         age,
         height,
         _id,
@@ -50,7 +50,7 @@ const GET_PLAYERS = gql`
           defending,
           physics
         },
-        team { name, logo }
+        playerTeam { name, logo }
       }
   }
 `;

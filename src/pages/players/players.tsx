@@ -13,6 +13,7 @@ import { IPlayer, PLAYER_ROLE, PLAYER_POSITION, playerRoles } from '../../domain
 import { DataGrid } from '../../components/data-grid';
 import { AppSelect } from '../../components/select';
 import { Dropzone } from '../../components/dropzone';
+import { AppButton } from '../../components/button';
 
 import './players.css';
 
@@ -187,7 +188,11 @@ export const Players: FC<IPlayersProps> = () => {
         <h1>Players</h1>
         <div className="players-options">
           <AppSelect
-            list={Object.keys(PLAYER_ROLE).map(key => PLAYER_ROLE[key]).filter(value => typeof value === 'string') as string[]} // TODO: fix type
+            list={
+              Object
+                .keys(PLAYER_ROLE).map((key: string) => PLAYER_ROLE[key])
+                .filter(value => typeof value === 'string') as string[]
+            } // TODO: fix type
             label='Role'
             value={role}
             showFormHelper
@@ -212,6 +217,13 @@ export const Players: FC<IPlayersProps> = () => {
             >
               Clear
             </Button>
+          </div>
+        <div className="players-import">
+          <AppButton
+              onClick={() => setIsModalOpen(true)}
+              isPrimary={true}
+              text='Import players'
+            />
           </div>
         </div>
         <DataGrid

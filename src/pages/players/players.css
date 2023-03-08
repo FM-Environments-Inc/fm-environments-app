@@ -23,3 +23,8 @@
   margin-left: 2em;
   align-self: center;
 }
+
+.players-import {
+  margin-left: 1em;
+  justify-self: flex-end;
+}

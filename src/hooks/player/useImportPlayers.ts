@@ -5,7 +5,7 @@ mutation importPlayers(
   $file: Upload!,
   $environment: String!
 ) {
-    importTeams(
+    importPlayers(
       importPlayersData: { file: $file, environment: $environment }
     )
 }

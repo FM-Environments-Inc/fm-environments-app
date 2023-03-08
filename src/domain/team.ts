@@ -4,7 +4,7 @@ import { IDivision } from './division';
 import { IEnvironment } from './environment';
 
 export interface ITeam {
-  id: number;
+  _id: number;
   name: string;
   logo?: string;
   region: IRegion;
@@ -17,7 +17,7 @@ export interface ITeam {
   wins: number;
   draws: number;
   loses: number;
-  points_earned: number;
-  enemy_points_earned: number;
-  points_difference: number;
+  goals: number;
+  goalsAgainst: number;
+  goalsDifference: number;
 };

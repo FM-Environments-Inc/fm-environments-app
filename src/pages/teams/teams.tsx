@@ -29,9 +29,9 @@ interface IRow {
   wins: number;
   draws: number;
   loses: number;
-  points_earned: number;
-  enemy_points_earned: number;
-  points_difference: number;
+  goals: number;
+  goalsAgainst: number;
+  goalsDifference: number;
 }
 
 const columns = [
@@ -76,16 +76,16 @@ const columns = [
     label: 'Winrate',
   },
   {
-    id: 'points_earned',
-    label: 'Points earned',
+    id: 'goals',
+    label: 'Goals',
   },
   {
-    id: 'enemy_points_earned',
-    label: 'Enemy points earned',
+    id: 'goalsAgainst',
+    label: 'Missed goals',
   },
   {
-    id: 'points_difference',
-    label: 'Points difference',
+    id: 'goalsDifference',
+    label: 'Goals difference',
   },
 ];
 
@@ -97,8 +97,8 @@ export const Teams: FC<ITeamsProps> = () => {
   const [isNational, setIsNational] = useState<boolean>(false);
   const [order, setOrder] = useState<string>('DESC');
   const [sortBy, setSortBy] = useState<string>('evaluation');
-  const [country, setCountry] = useState<string | null>(null);
-  const [region, setRegion] = useState<string | null>(null);
+  const [country, setCountry] = useState<string>('');
+  const [region, setRegion] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // Handlers
@@ -124,8 +124,8 @@ export const Teams: FC<ITeamsProps> = () => {
   };
 
   const onClearFilters = () => {
-    setCountry(null);
-    setRegion(null);
+    setCountry('');
+    setRegion('');
     setIsNational(false);
   };
 
@@ -167,9 +167,17 @@ export const Teams: FC<ITeamsProps> = () => {
       ...team,
       country: team.country.name,
       division: team.division.name,
-      winrate: team.wins + team.loses === 0
+      mathes: team.matches || 0,
+      wins: team.wins || 0,
+      loses: team.loses || 0,
+      draws: team.draws || 0,
+      goals: team.goals || 0,
+      goalsAgainst: team.goalsAgainst || 0,
+      goalsDifference: team.goalsDifference || 0,
+      winrate: team.wins === 0 || team.wins + team.loses === 0
         ? 0
-        : `${Number(+team.wins / (+team.wins + team.loses)).toFixed(2) * 100}%`
+        : `${Number(Number(+team.wins / (+team.wins + team.loses)).toFixed(2)) * 100}%`,
+      key: team._id,
     }))
     : [];
 

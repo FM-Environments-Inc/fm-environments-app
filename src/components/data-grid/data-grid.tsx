@@ -57,7 +57,7 @@ export const DataGrid: FC<IDataGridProps> = (props) => {
               //.slice(page * limit, page * limit + limit)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.key}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       const url = value || IMAGE_PLACEHOLDER_URL;

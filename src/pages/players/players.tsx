@@ -20,63 +20,76 @@ import './players.css';
 interface IPlayersProps {}
 
 interface IRow {
+  _id: string;
   position: string;
   fullName: string;
   age: number;
   country: string;
   evaluation: number;
-  overallRating: number;
+  overall: number;
   matches: number;
-  points_earned: number;
-  assists_earned: number;
+  goals: number;
+  assists: number;
   teamName: string;
   logo: string;
+  key: string;
 }
 
 const columns = [
   {
     id: 'evaluation',
     label: 'Evaluation',
+    key: 'evaluation',
   },
   {
-    id: 'overallRating',
+    id: 'overall',
     label: 'Overall rating',
+    key: 'overall',
   },
   {
     id: 'position',
     label: 'Position',
+    key: 'position',
   },
   {
     id: 'fullName',
     label: 'Full name',
+    key: 'fullName',
   },
   {
     id: 'age',
     label: 'Age',
+    key: 'age',
   },
   {
     id: 'country',
     label: 'Country',
+    key: 'country',
   },
   {
     id: 'matches',
     label: 'Matches',
+    key: 'matches',
   },
   {
-    id: 'points_earned',
+    id: 'goals',
     label: 'Goals',
+    key: 'goals',
   },
   {
-    id: 'assists_earned',
+    id: 'assists',
     label: 'Assists',
+    key: 'assists',
   },
   {
     id: 'teamName',
     label: 'Team',
+    key: 'teamName',
   },
   {
     id: 'logo',
     label: '',
+    key: 'logo',
   },
 ];
 
@@ -87,8 +100,8 @@ export const Players: FC<IPlayersProps> = () => {
   const [limit, setLimit] = useState<number>(20);
   const [order, setOrder] = useState<string>('DESC');
   const [sortBy, setSortBy] = useState<string>('evaluation');
-  const [country, setCountry] = useState<string | null>(null);
-  const [role, setRole] = useState<PLAYER_ROLE | null>(null);
+  const [country, setCountry] = useState<string>('');
+  const [role, setRole] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // Handlers
@@ -110,8 +123,8 @@ export const Players: FC<IPlayersProps> = () => {
   };
 
   const onClearFilters = () => {
-    setCountry(null);
-    setRole(null);
+    setCountry('');
+    setRole('');
   };
 
   const importPlayersMutation = useImportPlayers();
@@ -136,7 +149,7 @@ export const Players: FC<IPlayersProps> = () => {
     page: page + 1, // Data grid has zero index page
     limit,
     order,
-    country: country ? country : undefined,
+    country: country ? country : '',
     sortBy,
     role: role ? role : undefined,
   });
@@ -145,14 +158,16 @@ export const Players: FC<IPlayersProps> = () => {
   const rows: IRow[] = players
     ? players.map((player) => ({
       ...player,
-      country: player.country.name,
-      fullName: player.firstname ? `${player.firstname} ${player.lastname}` : player.lastname,
-      teamName: player.team ? player.team.name : '',
-      logo: player.team && player.team.logo ? player.team.logo : '',
+      country: player.country ? player.country.name : '',
+      fullName: player.firstName ? `${player.firstName} ${player.lastName}` : player.lastName,
+      teamName: player.playerTeam ? player.playerTeam.name : '',
+      logo: player.playerTeam && player.playerTeam.logo ? player.playerTeam.logo : '',
       position: player.position as string,
       matches: player.matches || 0,
-      points_earned: player.points_earned || 0,
-      assists_earned: player.points_earned || 0,
+      goals: player.goals || 0,
+      assists: player.assists || 0,
+      overall: player.ratings ? player.ratings.overall : 0,
+      key: player._id,
     }))
     : [];
 

@@ -35,11 +35,17 @@ query teams(
       region: $region
     ) {
       name,
-        logo,
-        _id,
-        country { name },
-        division,
-        evaluation
+      logo,
+      _id,
+      country { name },
+      division,
+      evaluation,
+      wins,
+      draws,
+      loses,
+      goals,
+      goalsAgainst,
+      goalsDifference,
     }
 }
 `;

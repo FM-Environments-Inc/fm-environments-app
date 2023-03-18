@@ -50,7 +50,10 @@ const GET_PLAYERS = gql`
           defending,
           physics
         },
-        playerTeam { name, logo }
+        playerTeam { name, logo },
+        matches,
+        goals,
+        assists,
       }
   }
 `;

@@ -34,7 +34,6 @@ export const Matches: FC<IMatchesProps> = () => {
       page: page + 1,
       limit,
     });
-    console.log('### matchesResponse', matchesResponse);
     if (matchesResponse) {
       matches = matchesResponse.data;
       total = matchesResponse.total;

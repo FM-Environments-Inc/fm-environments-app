@@ -15,7 +15,6 @@ interface IMatchRowProps {
   createdAt: string;
   finishedAt?: string;
   teams?: IMatchTeam[];
-  key: number;
   showDate?: boolean;
 }
 
@@ -37,7 +36,7 @@ const Logo: FC<ILogoProps> = (props) => {
 };
 
 export const MatchRow: FC<IMatchRowProps> = (props) => {
-  const { winner, teams, team1Goals, team2Goals, createdAt, finishedAt, key, showDate = false } = props;
+  const { winner, teams, team1Goals, team2Goals, createdAt, finishedAt, showDate = false } = props;
 
   if (!teams || teams.length < 2) {
     return null;
@@ -57,7 +56,7 @@ export const MatchRow: FC<IMatchRowProps> = (props) => {
   };
 
   return (
-    <div className='match' key={key}>
+    <div className='match'>
       <div className='match-row'>
         <Logo name={homeTeam.name} logo={homeTeam.logo} />
         <div className='match-score'>

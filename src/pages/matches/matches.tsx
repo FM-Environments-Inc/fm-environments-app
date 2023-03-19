@@ -1,45 +1,54 @@
 import { FC, useState, useCallback, ChangeEvent } from 'react';
+import Pagination from '@mui/material/Pagination';
+import { makeStyles } from "@mui/styles";
 
 import { useAppSelector } from '../../hooks/redux';
 import { useGetMatches } from '../../hooks/match/useGetMatches';
 import { MatchRow } from '../../components/match-row';
 import { IMatch } from '../../domain/match';
+import { COLORS } from '../../common/colors';
 
 import './matches.css';
 
 interface IMatchesProps {}
 
+const useStyles = makeStyles(() => ({
+  ul: {
+    "& .MuiPaginationItem-root": {
+      color: COLORS.WHITE
+    },
+  }
+}));
+
 export const Matches: FC<IMatchesProps> = () => {
   const { name: environment } = useAppSelector((state) => state.environment);
 
-  const [page, setPage] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(20);
+  const [page, setPage] = useState<number>(1);
 
   // Handlers
-  const handleChangePage = useCallback((event: unknown, newPage: number) => {
+  const handleChangePage = useCallback((_: unknown, newPage: number) => {
     setPage(newPage);
-  }, []);
-
-  const handleChangeRowsPerPage = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setLimit(+event.target.value)
-    setPage(0);
   }, []);
 
   let matchesResponse = null;
   let matches: IMatch[] = [];
   let total = 0;
+  const limit = 20;
   if (environment) {
     matchesResponse = useGetMatches({
       environment,
-      page: page + 1,
+      page,
       limit,
     });
-    console.log('### matchesResponse', matchesResponse);
     if (matchesResponse) {
       matches = matchesResponse.data;
       total = matchesResponse.total;
     }
   }
+
+  const pages = Math.floor(total / limit) + 1;
+
+  const classes = useStyles();
 
   return (
     <div className="matches">
@@ -60,6 +69,14 @@ export const Matches: FC<IMatchesProps> = () => {
           />
         )
       }
+      <Pagination
+        count={pages}
+        page={page}
+        onChange={handleChangePage}
+        color='primary'
+        size='large'
+        classes={{ ul: classes.ul }}
+      />
     </div>
   )
 };

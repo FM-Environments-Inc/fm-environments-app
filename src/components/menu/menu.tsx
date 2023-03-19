@@ -23,6 +23,9 @@ export const Menu: FC<IMenuProps> = () => {
         <li>
           <Link to={ROUTES.TOURNAMENTS}>Tournaments</Link>
         </li>
+        <li>
+          <Link to={ROUTES.MATCHES}>Matches</Link>
+        </li>
       </ul>
     </nav>
   )

@@ -10,6 +10,7 @@ import { Home } from './pages/home';
 import { Teams } from './pages/teams';
 import { Players } from './pages/players';
 import { Tournaments } from './pages/tournaments';
+import { Matches } from './pages/matches';
 
 import { ROUTES } from './common/routes';
 
@@ -32,6 +33,7 @@ function App() {
           <Route path={ROUTES.TEAMS} element={<Teams />} />
           <Route path={ROUTES.PLAYERS} element={<Players />} />
           <Route path={ROUTES.TOURNAMENTS} element={<Tournaments />} />
+          <Route path={ROUTES.MATCHES} element={<Matches />} />
           <Route path={ROUTES.HOME} element={<Home />} />
         </Routes>
       </Router>

@@ -3,4 +3,5 @@ export enum ROUTES {
   TEAMS = '/teams',
   PLAYERS = '/players',
   TOURNAMENTS = '/tournaments',
+  MATCHES = '/matches',
 };
